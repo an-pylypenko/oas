@@ -1,0 +1,231 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Test",
+    "version": "0.1.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333"
+    }
+  ],
+  "tags": [
+    {
+      "name": "task",
+      "description": "Task CRUD operations."
+    }
+  ],
+  "paths": {
+    "/tasks": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "List all task on page",
+        "description": "Lists tasks within a page.",
+        "responses": {
+          "200": {
+            "description": "If requested page exists, returns it. Page 1 always exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Task"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Create new task",
+        "description": "creates a task.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "If task was successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Get existing task",
+        "description": "returns a task if it exists.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "format": "int64",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "If task exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Create new task version",
+        "description": "creates a new version of a task.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "format": "int64",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "If new task version was successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Delete task",
+        "description": "Delete task",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "format": "int64",
+              "minimum": 0,
+              "exclusiveMinimum": true,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "If task deleted successfully."
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Task": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "NewTaskRequest": {
+        "required": [
+          "title",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "maxLength": 60,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "content": {
+            "maxLength": 50000,
+            "type": "string"
+          }
+        }
+      },
+      "EditTaskRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "maxLength": 60,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "content": {
+            "maxLength": 50000,
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
