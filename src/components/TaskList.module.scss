@@ -1,0 +1,19 @@
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+
+  .name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: calc(100% - 64px);
+  }
+
+  .buttons {
+    button {
+      margin: 0 4px;
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Form, Input, Modal } from "antd";
 
-import { useEditTask } from "./hooks/useEditTask";
-import { EditTaskRequest, Task } from "./task-api";
+import { useEditTask } from "../hooks/useEditTask";
+import { EditTaskRequest, Task } from "../task-api";
 
 interface Props {
   task: Task;

@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Form, Input, Modal } from "antd";
 
-import { useCreateTask } from "./hooks/useCreateTask";
-import { NewTaskRequest } from "./task-api";
+import { useCreateTask } from "../hooks/useCreateTask";
+import { NewTaskRequest } from "../task-api";
 
 interface Props {
   maxId: number;
