@@ -38,4 +38,4 @@ const EditTask: FC<Props> = ({ task, onCancel }) => {
   );
 };
 
-export { EditTask };
+export default EditTask;

@@ -1,13 +1,14 @@
 import { FC, useState } from "react";
 import { Flex, Layout, Typography } from "antd";
 
-import { useGetTasks } from "./hooks/useGetTasks";
-import { EditTask } from "./components/EditTask";
-import { useDeleteTask } from "./hooks/useDeleteTask";
-import { CreateTask } from "./components/CreateTask";
 import { Task } from "./task-api";
+
 import Title from "./components/Title";
 import TaskList from "./components/TaskList";
+import CreateTask from "./components/CreateTask";
+import EditTask from "./components/EditTask";
+import { useGetTasks } from "./hooks/useGetTasks";
+import { useDeleteTask } from "./hooks/useDeleteTask";
 
 import styles from "./App.module.scss";
 

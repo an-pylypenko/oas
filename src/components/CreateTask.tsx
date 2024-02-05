@@ -38,4 +38,4 @@ const CreateTask: FC<Props> = ({ maxId, onCancel }) => {
   );
 };
 
-export { CreateTask };
+export default CreateTask;
